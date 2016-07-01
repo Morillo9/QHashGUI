@@ -26,7 +26,7 @@ except AttributeError:
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
-        MainWindow.setObjectName(_fromUtf8("MainWindow"))
+        MainWindow.setObjectName(_fromUtf8("QHashCheck"))
         MainWindow.resize(378, 322)
         self.centralwidget = QtGui.QWidget(MainWindow)
         self.centralwidget.setObjectName(_fromUtf8("centralwidget"))
@@ -93,20 +93,20 @@ class Ui_MainWindow(object):
         QtCore.QMetaObject.connectSlotsByName(MainWindow)
 
     def retranslateUi(self, MainWindow):
-        MainWindow.setWindowTitle(_translate("MainWindow", "MainWindow", None))
-        self.pushButton.setText(_translate("MainWindow", "Select File", None))
+        MainWindow.setWindowTitle(_translate("QHashCheck", "QHashCheck", None))
+        self.pushButton.setText(_translate("QHashCheck", "Select File", None))
         __sortingEnabled = self.listWidget.isSortingEnabled()
         self.listWidget.setSortingEnabled(False)
         item = self.listWidget.item(0)
-        item.setText(_translate("MainWindow", "MD5", None))
+        item.setText(_translate("QHashCheck", "MD5", None))
         item = self.listWidget.item(1)
-        item.setText(_translate("MainWindow", "SHA1", None))
+        item.setText(_translate("QHashCheck", "SHA1", None))
         item = self.listWidget.item(2)
-        item.setText(_translate("MainWindow", "SHA256", None))
+        item.setText(_translate("QHashCheck", "SHA256", None))
         self.listWidget.setSortingEnabled(__sortingEnabled)
-        self.label.setText(_translate("MainWindow", "Computed Hashes", None))
-        self.label_2.setText(_translate("MainWindow", "User Hash               ", None))
-        self.pushButton_2.setText(_translate("MainWindow", "Compare Hash \n"
+        self.label.setText(_translate("QHashCheck", "Computed Hashes", None))
+        self.label_2.setText(_translate("QHashCheck", "User Hash               ", None))
+        self.pushButton_2.setText(_translate("QHashCheck", "Compare Hash \n"
 " Values", None))
 
     def Browse(self):
