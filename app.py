@@ -129,12 +129,11 @@ class Ui_MainWindow(object):
 
     def compare_Hashes(self):
 
-        a = self.listWidget_2.itemAt(0, 0).text()
-        b = self.listWidget_2.itemAt(0, 1).text()
-        c = self.listWidget_2.itemAt(0, 2).text()
+        a = self.listWidget_2.item(0).text()
+        b = self.listWidget_2.item(1).text()
+        c = self.listWidget_2.item(2).text()
 
         d = self.user_input.toPlainText()
-
 
         if str(a).rstrip() == str(d).rstrip() or str(b).rstrip() == str(d).rstrip() \
                 or str(c).rstrip() == str(d).rstrip() :
