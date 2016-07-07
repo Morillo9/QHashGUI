@@ -105,11 +105,13 @@ class Ui_MainWindow(object):
         item.setText(_translate("QHashCheck", "SHA256", None))
         self.listWidget.setSortingEnabled(__sortingEnabled)
         self.label.setText(_translate("QHashCheck", "Computed Hashes", None))
-        self.label_2.setText(_translate("QHashCheck", "User Hash               ", None))
+        self.label_2.setText(_translate("QHashCheck", "User Hash             ", None))
         self.pushButton_2.setText(_translate("QHashCheck", "Compare Hash \n"
 " Values", None))
 
     def Browse(self):
+
+        self.listWidget_2.clear()
 
         fname = QFileDialog.getOpenFileName()
         self.hash_md5 = hashlib.md5()
@@ -135,9 +137,13 @@ class Ui_MainWindow(object):
 
         d = self.user_input.toPlainText()
 
-        if str(a).rstrip() == str(d).rstrip() or str(b).rstrip() == str(d).rstrip() \
-                or str(c).rstrip() == str(d).rstrip() :
-            self.comparison_frame.setText("Hashes match, file verified")
+        if str(a).rstrip() == str(d).rstrip():
+            self.comparison_frame.setText("Hashes match, file verified \nMode: MD5")
+
+        elif str(b).rstrip() == str(d).rstrip():
+            self.comparison_frame.setText("Hashes match, file verified \nMode: SHA1")
+        elif str(c).rstrip() == str(d).rstrip():
+            self.comparison_frame.setText("Hashes match, file verified \nMode: SHA256")
         else:
             self.comparison_frame.setText("Hashes DO NOT match, file corrupt")
 
