@@ -51,6 +51,10 @@ class Ui_MainWindow(object):
         self.listWidget.addItem(item)
         item = QtGui.QListWidgetItem()
         self.listWidget.addItem(item)
+        item = QtGui.QListWidgetItem()
+        self.listWidget.addItem(item)
+        item = QtGui.QListWidgetItem()
+        self.listWidget.addItem(item)
         self.horizontalLayout_2.addWidget(self.listWidget)
         self.listWidget_2 = QtGui.QListWidget(self.centralwidget)
         self.listWidget_2.setVerticalScrollBarPolicy(QtCore.Qt.ScrollBarAsNeeded)
@@ -103,6 +107,10 @@ class Ui_MainWindow(object):
         item.setText(_translate("QHashCheck", "SHA1", None))
         item = self.listWidget.item(2)
         item.setText(_translate("QHashCheck", "SHA256", None))
+        item = self.listWidget.item(3)
+        item.setText(_translate("QHashCheck", "SHA224", None))
+        item = self.listWidget.item(4)
+        item.setText(_translate("QHashCheck", "SHA384", None))
         self.listWidget.setSortingEnabled(__sortingEnabled)
         self.label.setText(_translate("QHashCheck", "Computed Hashes", None))
         self.label_2.setText(_translate("QHashCheck", "User Hash               ", None))
@@ -117,16 +125,23 @@ class Ui_MainWindow(object):
         self.hash_md5 = hashlib.md5()
         self.hash_sha256 = hashlib.sha256()
         self.hash_sha1 = hashlib.sha1()
+        self.hash_sha224 = hashlib.sha224()
+        self.hash_sha384 = hashlib.sha384()
+        
         with open(fname, "rb") as f:
             for chunk in iter(lambda: f.read(4096), b""):
                 self.hash_md5.update(chunk)
                 self.hash_sha256.update(chunk)
                 self.hash_sha1.update(chunk)
+                self.hash_sha224.update(chunk)
+                self.hash_sha384.update(chunk)
 
 
         self.listWidget_2.addItem(self.hash_md5.hexdigest())
         self.listWidget_2.addItem(self.hash_sha1.hexdigest())
         self.listWidget_2.addItem(self.hash_sha256.hexdigest())
+        self.listWidget_2.addItem(self.hash_sha224.hexdigest())
+        self.listWidget_2.addItem(self.hash_sha384.hexdigest())
 
 
     def compare_Hashes(self):
@@ -134,6 +149,8 @@ class Ui_MainWindow(object):
         a = self.listWidget_2.item(0).text()
         b = self.listWidget_2.item(1).text()
         c = self.listWidget_2.item(2).text()
+        x = self.listWidget_2.item(3).text()
+        y = self.listWidget_2.item(4).text()
 
         d = self.user_input.toPlainText()
 
@@ -144,6 +161,10 @@ class Ui_MainWindow(object):
             self.comparison_frame.setText("Hashes match, file verified \nMode: SHA1")
         elif str(c).rstrip() == str(d).rstrip():
             self.comparison_frame.setText("Hashes match, file verified \nMode: SHA256")
+        elif str(x).rstrip() == str(d).rstrip():
+            self.comparison_frame.setText("Hashes match, file verified \nMode: SHA224")
+        elif str(y).rstrip() == str(d).rstrip():
+            self.comparison_frame.setText("Hashes match, file verified \nMode: SHA384")
         else:
             self.comparison_frame.setText("Hashes DO NOT match, file corrupt")
 
