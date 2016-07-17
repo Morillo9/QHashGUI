@@ -105,7 +105,7 @@ class Ui_MainWindow(object):
         item.setText(_translate("QHashCheck", "SHA256", None))
         self.listWidget.setSortingEnabled(__sortingEnabled)
         self.label.setText(_translate("QHashCheck", "Computed Hashes", None))
-        self.label_2.setText(_translate("QHashCheck", "User Hash             ", None))
+        self.label_2.setText(_translate("QHashCheck", "User Hash               ", None))
         self.pushButton_2.setText(_translate("QHashCheck", "Compare Hash \n"
 " Values", None))
 
