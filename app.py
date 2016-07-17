@@ -152,18 +152,18 @@ class Ui_MainWindow(object):
         x = self.listWidget_2.item(3).text()
         y = self.listWidget_2.item(4).text()
 
-        d = self.user_input.toPlainText()
+        user_input = self.user_input.toPlainText()
 
-        if str(a).rstrip() == str(d).rstrip():
+        if str(a).rstrip() == str(user_input).rstrip():
             self.comparison_frame.setText("Hashes match, file verified \nMode: MD5")
 
-        elif str(b).rstrip() == str(d).rstrip():
+        elif str(b).rstrip() == str(user_input).rstrip():
             self.comparison_frame.setText("Hashes match, file verified \nMode: SHA1")
-        elif str(c).rstrip() == str(d).rstrip():
+        elif str(c).rstrip() == str(user_input).rstrip():
             self.comparison_frame.setText("Hashes match, file verified \nMode: SHA256")
-        elif str(x).rstrip() == str(d).rstrip():
+        elif str(x).rstrip() == str(user_input).rstrip():
             self.comparison_frame.setText("Hashes match, file verified \nMode: SHA224")
-        elif str(y).rstrip() == str(d).rstrip():
+        elif str(y).rstrip() == str(user_input).rstrip():
             self.comparison_frame.setText("Hashes match, file verified \nMode: SHA384")
         else:
             self.comparison_frame.setText("Hashes DO NOT match, file corrupt")
