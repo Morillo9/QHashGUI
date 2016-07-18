@@ -160,6 +160,7 @@ class Ui_MainWindow(object):
         c = self.listWidget_2.item(2).text()
         x = self.listWidget_2.item(3).text()
         y = self.listWidget_2.item(4).text()
+        z = self.listWidget_2.item(5).text()
 
         user_input = self.user_input.toPlainText()
 
@@ -174,6 +175,8 @@ class Ui_MainWindow(object):
             self.comparison_frame.setText("Hashes match, file verified \nMode: SHA224")
         elif str(y).rstrip() == str(user_input).rstrip():
             self.comparison_frame.setText("Hashes match, file verified \nMode: SHA384")
+        elif str(z).rstrip() == str(user_input).rstrip():
+            self.comparison_frame.setText("Hashes match, file verified \nMode: CRC32")
         else:
             self.comparison_frame.setText("Hashes DO NOT match, file corrupt")
 
