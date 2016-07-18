@@ -9,6 +9,7 @@
 from PyQt4 import QtCore, QtGui
 from PyQt4.QtGui import QFileDialog
 import hashlib
+import binascii
 
 try:
     _fromUtf8 = QtCore.QString.fromUtf8
@@ -45,6 +46,8 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName(_fromUtf8("horizontalLayout_2"))
         self.listWidget = QtGui.QListWidget(self.centralwidget)
         self.listWidget.setObjectName(_fromUtf8("listWidget"))
+        item = QtGui.QListWidgetItem()
+        self.listWidget.addItem(item)
         item = QtGui.QListWidgetItem()
         self.listWidget.addItem(item)
         item = QtGui.QListWidgetItem()
@@ -111,6 +114,8 @@ class Ui_MainWindow(object):
         item.setText(_translate("QHashCheck", "SHA224", None))
         item = self.listWidget.item(4)
         item.setText(_translate("QHashCheck", "SHA384", None))
+        item = self.listWidget.item(5)
+        item.setText(_translate("QHashCheck", "CRC32", None))
         self.listWidget.setSortingEnabled(__sortingEnabled)
         self.label.setText(_translate("QHashCheck", "Computed Hashes", None))
         self.label_2.setText(_translate("QHashCheck", "User Hash               ", None))
@@ -127,8 +132,11 @@ class Ui_MainWindow(object):
         self.hash_sha1 = hashlib.sha1()
         self.hash_sha224 = hashlib.sha224()
         self.hash_sha384 = hashlib.sha384()
+        self.hash_crc32 = None 
         
         with open(fname, "rb") as f:
+            buf = f.read()
+            self.hash_crc32 = (binascii.crc32(buf) & 0xFFFFFFFF)
             for chunk in iter(lambda: f.read(4096), b""):
                 self.hash_md5.update(chunk)
                 self.hash_sha256.update(chunk)
@@ -142,6 +150,7 @@ class Ui_MainWindow(object):
         self.listWidget_2.addItem(self.hash_sha256.hexdigest())
         self.listWidget_2.addItem(self.hash_sha224.hexdigest())
         self.listWidget_2.addItem(self.hash_sha384.hexdigest())
+        self.listWidget_2.addItem(str(self.hash_crc32))
 
 
     def compare_Hashes(self):
